@@ -1,0 +1,135 @@
+%% Robust Temporal Difference Learning with Linear Function Approximation %%
+%-------------------------------------------------------------------------% 
+% Rewards are generated based on the Huber-Contamination Model
+% Robust Estimator is the Median-of-Means; No Thresholding 
+
+%-------------------------------------------------------------------------%
+clc; clear all; close all; %#ok<CLALL> 
+S=100; % no of states
+gamma=0.5; % discount factor
+r=10; % rank of feature matrix 
+
+% Note: Length of each feature vector is 'r'.
+
+% Description of Notation
+%--------------------------  
+% theta_st ---> True fixed point
+% P ---> Transition matrix
+% R ---> Reward vector
+% p ---> Stationary distribution
+% phi ---> Feature matrix (Dimension is S by r)
+
+[theta_st,P,R,p,phi]= markov_gen(S,gamma,r); 
+
+%--------------------------------------------------------------------------
+% Markov Setting
+%--------------------------------------------------------------------------
+T=50000; % no of iterations
+D=zeros(S,S); % stores the elements of p
+for i=1:S
+D(i,i)=p(i);
+end
+
+Ep=1; % no of epochs over which we average
+avg_err=zeros(1,T); % Stores MSE for basic TD
+avg_err_R=zeros(1,T); % Stores MSE for robust TD
+for k=1:Ep
+x=zeros(r,T); % stores iterates of basic recursion
+y=zeros(r,T); % stores iterates of robust recursion
+R_str=zeros(r,T); % stores historical data needed for MoM
+alpha=0.075; % learning rate 
+err=zeros(1,T); % error in basic case
+err_R=zeros(1,T); % error in the robust case
+err(1,1)=(norm(theta_st))^2;
+err_R(1,1)=(norm(theta_st))^2; 
+
+
+% initialize from stationary distribution
+h=cumsum(p);
+z=rand(1);
+s_old=find(h > z, 1);
+
+
+Tinit=10*ceil((log(r*T))^2); % Initial Burn-in time
+hatb=zeros(1,r); % Estimate of \bar{b}
+
+for i=1:T
+% Generating the next state s_t+1
+d=P(s_old,:); % distribution of s_t+1|s_t 
+h=cumsum(d);
+z=rand(1);
+s_new=find(h > z, 1); % new state s_t+1
+
+%------ Generating Corrupted Rewards ----------%
+rew=R(s_old,1); % true reward
+
+eps=0.001; % probability of corruption
+Bias=100/(eps); % Bias
+
+z=rand(1);
+
+if (z <= eps)
+    rew=Bias;
+end
+
+R_str(:,i)= rew*phi(s_old,:)';
+
+%----------------------------------------------%
+alpha=1/i;
+
+%--------- Basic TD Update --------------------%
+g=(rew+gamma*(phi(s_new,:))*x(:,i)-(phi(s_old,:))*x(:,i))*(phi(s_old,:))';
+x(:,i+1)=x(:,i)+alpha*g;
+err(:,i)=(norm(theta_st-x(:,i)))^2;
+%----------------------------------------------%
+
+%--------- Robust TD Update -------------------%
+if (i <= Tinit)
+    y(:,i+1)=y(:,i); % No updates prior to burn-in time
+else
+% Constructing \hat{b}:
+for j=1:r
+tau=ceil(log(T)); % subsampling gap.
+delta=1/(r*T); % error probability.
+Data=R_str(j, 1:i); % Construct data set for estimating b_j. 
+hatb(1,j)=RUMEM(Data, 1, delta, eps); % Invoke RUMEM Estimator 
+end
+
+g_R=(gamma*(phi(s_new,:))*y(:,i)-(phi(s_old,:))*y(:,i))*(phi(s_old,:))'+hatb'; 
+% Robust TD update direction
+y(:,i+1)=y(:,i)+alpha*g_R;
+end
+err_R(:,i)=(norm(theta_st-y(:,i)))^2;
+%----------------------------------------------%
+s_old=s_new; % continuity of trajectory
+end
+avg_err=avg_err+err;
+avg_err_R=avg_err_R+err_R; 
+end
+
+figure
+%plot(avg_err/Ep, 'r', 'LineWidth',2);
+%hold on;
+plot(avg_err_R/Ep, 'b', 'LineWidth',2);
+hold on;
+xlim([1 T]);
+%legend('Robust TD'); 
+ax=gca;
+set(ax, 'fontsize',15, 'fontname', 'times','FontWeight','bold');
+ax.LineWidth=1.2;
+xlab=xlabel('${{t}}$','Interpreter','latex');
+set(xlab,'fontsize',30,'fontname', 'times','FontWeight','bold');
+ylab=ylabel('$E_t$','Interpreter','latex');
+set(ylab,'fontsize',30, 'fontname', 'times','FontWeight','bold');
+grid on;
+
+ax = gca;
+ax.XAxis.LineWidth = 1.5;
+ax.YAxis.LineWidth = 1.5;
+outerpos = ax.OuterPosition;
+ti = ax.TightInset; 
+left = outerpos(1) + ti(1);
+bottom = outerpos(2) + ti(2);
+ax_width = outerpos(3) - ti(1) - ti(3)-0.01;
+ax_height = outerpos(4) - ti(2) - ti(4)-0.01;
+ax.Position = [left bottom ax_width ax_height]; 
