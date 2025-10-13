@@ -29,3 +29,21 @@ statistics.
     <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/vulnerabilityexp1%20(2).jpg" style="width:250px">
  </td>
 </tr>
+
+```bash
+@InProceedings{pmlr-v258-maity25a,
+  title = 	 {Adversarially-Robust TD Learning with Markovian Data: Finite-Time Rates and Fundamental Limits},
+  author =       {Maity, Sreejeet and Mitra, Aritra},
+  booktitle = 	 {Proceedings of The 28th International Conference on Artificial Intelligence and Statistics},
+  pages = 	 {2431--2439},
+  year = 	 {2025},
+  editor = 	 {Li, Yingzhen and Mandt, Stephan and Agrawal, Shipra and Khan, Emtiyaz},
+  volume = 	 {258},
+  series = 	 {Proceedings of Machine Learning Research},
+  month = 	 {03--05 May},
+  publisher =    {PMLR},
+  pdf = 	 {https://raw.githubusercontent.com/mlresearch/v258/main/assets/maity25a/maity25a.pdf},
+  url = 	 {https://proceedings.mlr.press/v258/maity25a.html},
+}
+
+```
