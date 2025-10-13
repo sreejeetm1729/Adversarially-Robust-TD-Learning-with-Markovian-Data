@@ -19,18 +19,6 @@ adversarial robustness of stochastic approximation schemes driven by Markov nois
 new technical tool that enables our results is an analysis of the Median-of-Means estimator with
 corrupted, time-correlated data that might be of independent interest to the literature on robust
 statistics.
-
-## Figures
-
-<table>
-<tr>
-  <td>
-    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/dim_step_vuln.jpg" style="width:450px">
-    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/vulnerabilityexp1_2.jpg" style="width:450px">
-    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/Exp1_plots-2.jpg" style="width:450px">
-    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/Noise_effect-2.jpg" style="width:450px">    
- </td>
-</tr>
   
 ## Citation
   
