@@ -19,7 +19,7 @@ new technical tool that enables our results is an analysis of the Median-of-Mean
 corrupted, time-correlated data that might be of independent interest to the literature on robust
 statistics.
 
-# Figures
+## Figures
 
 <table>
 <tr>
@@ -31,7 +31,7 @@ statistics.
  </td>
 </tr>
   
-# Citation
+## Citation
   
 ```bash
 @InProceedings{pmlr-v258-maity25a,
