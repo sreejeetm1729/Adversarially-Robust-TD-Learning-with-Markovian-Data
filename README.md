@@ -23,10 +23,10 @@ statistics.
 <table>
 <tr>
   <td>
-    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/dim_step_vuln.jpg" style="width:300px">
-    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/vulnerabilityexp1_2.jpg" style="width:300px">
-    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/Exp1_plots-2.jpg" style="width:300px">
-    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/Noise_effect-2.jpg" style="width:300px">    
+    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/dim_step_vuln.jpg" style="width:400px">
+    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/vulnerabilityexp1_2.jpg" style="width:400px">
+    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/Exp1_plots-2.jpg" style="width:400px">
+    <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/Noise_effect-2.jpg" style="width:400px">    
  </td>
 </tr>
 # Citation
