@@ -1,4 +1,4 @@
-# Adversarially-Robust-TD-Learning-with-Markovian-Data
+# Adversarially Robust TD Learning with Markovian Data
 One of the most basic problems in reinforcement learning (RL) is policy evaluation: estimating
 the long-term return, i.e., value function, corresponding to a given fixed policy. The celebrated
 Temporal Difference (TD) learning algorithm addresses this problem, and recent work has
@@ -18,6 +18,8 @@ adversarial robustness of stochastic approximation schemes driven by Markov nois
 new technical tool that enables our results is an analysis of the Median-of-Means estimator with
 corrupted, time-correlated data that might be of independent interest to the literature on robust
 statistics.
+# Figures
+
 <table>
 <tr>
   <td>
@@ -27,7 +29,8 @@ statistics.
     <img src="https://github.com/sreejeetm1729/Adversarially-Robust-TD-Learning-with-Markovian-Data/blob/main/Noise_effect-2.jpg" style="width:300px">    
  </td>
 </tr>
-
+# Citation
+  
 ```bash
 @InProceedings{pmlr-v258-maity25a,
   title = 	 {Adversarially-Robust TD Learning with Markovian Data: Finite-Time Rates and Fundamental Limits},
